@@ -22,7 +22,7 @@ class PagesController extends Controller
             'message' => "required|string|max:500"
         ]);
 
-
+        
 
         Alert::toast('We have recievd your feedback', 'success');
         return back();
