@@ -23,11 +23,11 @@ class PagesController extends Controller
             'message' => "required|string|max:500"
         ]);
 
-       Feedback::create([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'message' => $request->input('message'),
-       ]);
+        Feedback::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'message' => $request->input('message'),
+        ]);
 
         Alert::toast('We have recievd your feedback', 'success');
         return back();
@@ -40,8 +40,22 @@ class PagesController extends Controller
         $feedbacks = Feedback::oldest()->get();
 
 
-        $feedbacks = Feedback::latest()->paginate(1);
+        $feedbacks = Feedback::latest()->paginate(10);
 
         return view('feedback.show', compact('feedbacks'));
+    }
+
+
+    public function update_feedback($id)
+    {
+        //    $feedback =  Feedback::where('id', '=', $id)->get();
+        // $feedback =  Feedback::where('id', '=', $id)->first();
+        $feedback =  Feedback::findOrFail($id)->update([
+            'status' => "read"
+        ]);
+
+
+        Alert::toast("Update Successful", 'success');
+        return back();
     }
 }

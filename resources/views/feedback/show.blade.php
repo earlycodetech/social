@@ -24,7 +24,22 @@
                                         <td>{{ $item->email }}</td>
                                         <td> {{ $item->message }}</td>
                                         <td>
-
+                                            <div class="d-flex align-items-center gap-2">
+                                                @if ($item->status === 'pending')
+                                                    <form action="{{ route('feedback.update', ['id' => $item->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button class="btn btn-primary btn-sm">
+                                                            <i class="fa-solid fa-check-circle"></i>
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <span class="btn btn-success">
+                                                        <i class="fa-solid fa-check-double"></i>
+                                                    </span>
+                                                @endif
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty
@@ -36,7 +51,7 @@
                         </table>
                     </div>
 
-                  {!! $feedbacks->links('pagination::bootstrap-5') !!}
+                    {!! $feedbacks->links('pagination::bootstrap-5') !!}
                 </div>
             </div>
         </div>
