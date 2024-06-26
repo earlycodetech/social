@@ -58,4 +58,13 @@ class PagesController extends Controller
         Alert::toast("Update Successful", 'success');
         return back();
     }
+    
+    public function delete_feedback($id)
+    {
+       
+        Feedback::findOrFail($id)->delete();
+
+        Alert::toast("Deleted Successfully", 'success');
+        return back();
+    }
 }

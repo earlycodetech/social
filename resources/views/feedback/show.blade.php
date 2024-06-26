@@ -35,10 +35,20 @@
                                                         </button>
                                                     </form>
                                                 @else
-                                                    <span class="btn btn-success">
+                                                    <span class="btn btn-success btn-sm">
                                                         <i class="fa-solid fa-check-double"></i>
                                                     </span>
                                                 @endif
+
+
+                                                <form action="{{ route('feedback.delete', ['id' => $item->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-sm">
+                                                        <i class="fa-solid fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
