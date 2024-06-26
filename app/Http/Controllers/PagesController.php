@@ -32,4 +32,16 @@ class PagesController extends Controller
         Alert::toast('We have recievd your feedback', 'success');
         return back();
     }
+
+
+    public function show_feedback()
+    {
+        $feedbacks = Feedback::all()->sortByDesc('name');
+        $feedbacks = Feedback::oldest()->get();
+
+
+        $feedbacks = Feedback::latest()->paginate(1);
+
+        return view('feedback.show', compact('feedbacks'));
+    }
 }
