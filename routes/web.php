@@ -17,6 +17,8 @@ Route::get('show/feedbacks', [PagesController::class, "show_feedback"])->name('f
 Route::post('give/feedback', [PagesController::class, "submit_feedback"])->name('feedback.submit');
 
 Route::patch('update/{id}/feedback', [PagesController::class, "update_feedback"])->name('feedback.update');
+
+Route::delete('delete/{id}/feedback', [PagesController::class, "delete_feedback"])->name('feedback.delete');
 /************* uri ************************  action  ******************** name *****/ 
 
 Auth::routes();
