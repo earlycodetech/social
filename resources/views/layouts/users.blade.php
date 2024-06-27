@@ -41,5 +41,6 @@
     </div>
 
     @include('sweetalert::alert')
+    <script src="{{ asset('vendor/fslightbox/fslightbox.js') }}"></script>
 </body>
 </html>
