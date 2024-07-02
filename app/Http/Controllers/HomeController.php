@@ -23,6 +23,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = auth()->user();
+
+        if ($user->role == 'admin') {
+            return redirect()->route('feedback.show');
+        } else {
+            return redirect()->route('timeline.page');
+        }
+
+        dd($user->role);
     }
 }
