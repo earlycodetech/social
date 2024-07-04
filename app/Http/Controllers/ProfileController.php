@@ -24,7 +24,6 @@ class ProfileController extends Controller
         ]);
 
         //Get the old avatar name;
-
         $old_avatar = auth()->user()->avatar;
         if ($old_avatar == 'user.png') {
            $old_avatar = null;

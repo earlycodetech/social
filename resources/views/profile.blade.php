@@ -13,10 +13,12 @@
 
                             <div class="row justify-content-center mb-4">
                                 <div class="col-4 col-md-3">
-                                    <img src="{{ asset('avatars/' . $user->avatar) }}" height="200" class="img-thumbnail"
-                                        alt="">
+                                    <label for="imgInp">
+                                        <img src="{{ asset('avatars/' . $user->avatar) }}"  class="img-thumbnail"
+                                            alt="" id="imagePreview">
+                                    </label>
 
-                                    <input type="file" name="avatar" class="form-control @error('avatar') is-invalid @enderror" accept="image/*">
+                                    <input type="file" id="imgInp" name="avatar" onchange="showPreview(event, 'imagePreview')"  class="form-control @error('avatar') is-invalid @enderror" accept="image/*">
                                     
                                     @error('avatar')
                                         <span class="invalid-feedback" role="alert">
@@ -76,4 +78,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function showPreview(event, preview) {
+            const file =  event.target.files[0];
+            const url = URL.createObjectURL(file);
+
+            document.getElementById(preview).src= url
+        }
+    </script>
 @endsection
