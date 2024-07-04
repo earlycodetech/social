@@ -36,5 +36,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('timeline', [TimelineController::class, 'index'])->middleware(['auth'])->name('timeline.page');
+Route::post('timeline', [TimelineController::class, 'save_post'])->middleware(['auth'])->name('timeline.new.post');
+
 Route::get('profile', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile.page');
 Route::patch('profile', [ProfileController::class, 'update_profile'])->middleware(['auth'])->name('profile.update');
