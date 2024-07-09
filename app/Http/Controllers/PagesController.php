@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -67,4 +69,24 @@ class PagesController extends Controller
         Alert::toast("Deleted Successfully", 'success');
         return back();
     }
+
+
+    public function show_contact()
+    {
+        return view('contact');
+    }       
+
+    public function  send_contact(Request $request)  
+    {
+        $data =  $request->validate([
+            'name' => "required|string|max:100",
+            'email' => "required|string|email",
+            'message' => "required|string"
+        ]);
+
+        Mail::to('admin@social.com')->send(new ContactMail($data));
+        Alert::toast("Message Sent Successfully", 'success');
+        return back();
+    }
+
 }

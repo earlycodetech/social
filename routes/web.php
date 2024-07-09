@@ -13,6 +13,9 @@ Route::get('/', function () {
 
 
 Route::get('give/feedback', [PagesController::class, "feedback"])->name('feedback.page');
+Route::get('contact', [PagesController::class, "show_contact"])->name('contact.page');
+Route::post('contact', [PagesController::class, "send_contact"])->name('contact.send');
+
 
 
 Route::post('give/feedback', [PagesController::class, "submit_feedback"])->name('feedback.submit');
@@ -40,3 +43,10 @@ Route::post('timeline', [TimelineController::class, 'save_post'])->middleware(['
 
 Route::get('profile', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile.page');
 Route::patch('profile', [ProfileController::class, 'update_profile'])->middleware(['auth'])->name('profile.update');
+
+/*
+ 1 route = get
+ 2 uri = contact
+ 3. PagesControler show_contact
+ 4. contact.page
+*/ 

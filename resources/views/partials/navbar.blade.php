@@ -12,7 +12,10 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a href="{{ route('feedback.page') }}" class="nav-link"> Tell us what you think</a>
+                    <a href="{{ route('feedback.page') }}" class="nav-link {{ request()->is('give/feedback') ? 'active' : '' }}"> Tell us what you think</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('contact.page') }}" class="nav-link {{ request()->is('contact') ? 'active' : '' }}"> Contact </a>
                 </li>
             </ul>
 
